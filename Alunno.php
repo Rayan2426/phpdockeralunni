@@ -1,5 +1,6 @@
 <?php
-class Alunno{
+class Alunno implements JsonSerializable
+{
     private $cf,$nome,$cognome, $eta;
     public function __construct($cf,$nome,$cognome,$eta){
         $this->cf = $cf;
@@ -40,6 +41,18 @@ class Alunno{
 
     public function GetAll(){
         return "Codice Fiscale: ".$this->cf."<br>Nome: " . $this->nome . "<br>Cognome: " . $this->cognome . "<br>Eta: " . $this->eta;
+    }
+
+    public function jsonSerialize(){
+
+        $array = [
+            "cf" => $this->cf,
+            "nome" => $this->nome,
+            "cognome" => $this->cognome,
+            "eta" => $this->eta
+        ];
+        
+        return $array;        
     }
 }
 ?>
