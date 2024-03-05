@@ -19,10 +19,10 @@ class Classe implements JsonSerializable
     public function getAlunno($cf){
         foreach ($this->alunni as $alunno) {
             if($alunno->getCf() == $cf){
-                return $alunno->getAll();
+                return $alunno;
             }
         }
-        return "none";
+        return null;
     }
 
     public function getSezione(){
@@ -42,11 +42,10 @@ class Classe implements JsonSerializable
     public function jsonSerialize(){
         $array = [
             "sezione" => $this->sezione,
+            "allunni" => $this->alunni
         ];
 
-        foreach ($alunni as $alunno) {
-            array_push($array["lista_alunni"],$alunno->jsonSerialize());
-        }
+
 
         return $array;
         
